@@ -17,7 +17,6 @@ output:
 * About RTCGA Project
 {:toc}
 
-
 # R Toolkit for Biostatistics
 <img src='https://raw.githubusercontent.com/RTCGA/RTCGA/master/RTCGA_workflow_ver3.png'> 
 
