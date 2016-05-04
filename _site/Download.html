@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+	<link href="http://gmpg.org/xfn/11" rel="profile">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<meta http-equiv="content-type" content="text/html; charset=utf-8">
+				
+				<!-- Enable responsiveness on mobile devices-->
+				<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+					
+					<title>
+					
+				TCGA Data Download &middot; RTCGA
+				
+				</title>
+					<script>
+					(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+						(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+						m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+					})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+				
+				ga('create', 'UA-75667517-1', 'auto');
+				ga('send', 'pageview');
+				
+				</script>
+					
+					<!-- CSS -->
+					<link rel="stylesheet" href="/RTCGA/public/css/poole.css">
+						<link rel="stylesheet" href="/RTCGA/public/css/syntax.css">
+							<link rel="stylesheet" href="/RTCGA/public/css/lanyon.css">
+								<link rel="stylesheet" href="/RTCGA/public/css/custom.css">
+									<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+										
+										<!-- Icons -->
+										<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/RTCGA/public/apple-touch-icon-precomposed.png">
+											<link rel="shortcut icon" href="/RTCGA/public/favicon.ico">
+												
+												<!-- RSS -->
+												<link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+													
+													<!-- Mathjax -->
+													<script type="text/javascript"
+													src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+														</script>
+														<script type="text/javascript" src="/RTCGA/public/js/mathjaxcustom.js"></script>
+														
+													<!--Disqus comment counts-->
+														<script id="dsq-count-scr" src="//RTCGA.disqus.com/count.js" async></script>
+														
+													
+													</head>
+
+  <body class="layout-reverse">
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox" checked>
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>R packages with TCGA data Maintainer:<a href="https://github.com/MarcinKosinski">@MarcinKosinski</a></p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/RTCGA">Home</a>
+
+    
+
+      
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/RTCGA/Applications.html">Web Applications</a>
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item active" href="/RTCGA/Download.html">TCGA Data Download</a>
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/RTCGA/QuickGuide.html">Quick Guide</a>
+          
+        
+      
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/RTCGA/Usecases.html">Usecases</a>
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/RTCGA/Visualizations.html">Visualizations</a>
+          
+        
+      
+        
+      
+        
+      
+      
+       <a class="sidebar-nav-item" href="/RTCGA/staticdocs/">Static Docs</a>
+      <a class="sidebar-nav-item" href="https://github.com/RTCGA/RTCGA">GitHub project</a>
+  </nav>
+
+</div>
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">RTCGA</a>
+            <small></small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="page">
+  <h1 class="page-title">TCGA Data Download</h1>
+  
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">library</span><span class="p">(</span><span class="n">RTCGA</span><span class="p">)</span></code></pre></figure>
+
+<h1 id="available-datasets">Available Datasets</h1>
+
+<p>Before you read this section, please make sure you are aware of that we have prepared some datasets for you in below packages. <code class="highlighter-rouge">browseVignettes</code> is a function.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">package</th>
+      <th style="text-align: left">installation</th>
+      <th style="text-align: left">help</th>
+      <th style="text-align: left">browseVignettes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">RTCGA.rnaseq</td>
+      <td style="text-align: left"><code class="highlighter-rouge">biocLite('RTCGA.rnaseq')</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">?rnaseq</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">'RTCGA.rnaseq'</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">RTCGA.clinical</td>
+      <td style="text-align: left"><code class="highlighter-rouge">biocLite('RTCGA.clinical')</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">?clinical</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">'RTCGA.clinical'</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">RTCGA.mutations</td>
+      <td style="text-align: left"><code class="highlighter-rouge">biocLite('RTCGA.mutations')</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">?mutations</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">'RTCGA.mutations'</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">RTCGA.mRNA</td>
+      <td style="text-align: left"><code class="highlighter-rouge">biocLite('RTCGA.mRNA')</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">?mRNA</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">'RTCGA.mRNA'</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">RTCGA.miRNASeq</td>
+      <td style="text-align: left"><code class="highlighter-rouge">biocLite('RTCGA.miRNASeq')</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">?miRNASeq</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">'RTCGA.miRNASeq'</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">RTCGA.PANCAN12</td>
+      <td style="text-align: left"><code class="highlighter-rouge">biocLite('RTCGA.PANCAN12')</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">?pancan12</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">'RTCGA.PANCAN12'</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">RTCGA.RPPA</td>
+      <td style="text-align: left"><code class="highlighter-rouge">biocLite('RTCGA.RPPA')</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">?RPPA</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">'RTCGA.RPPA'</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">RTCGA.CNV</td>
+      <td style="text-align: left"><code class="highlighter-rouge">biocLite('RTCGA.CNV')</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">?CNV</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">'RTCGA.CNV'</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">RTCGA.methylation</td>
+      <td style="text-align: left"><code class="highlighter-rouge">biocLite('RTCGA.methylation')</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">?methylation</code></td>
+      <td style="text-align: left"><code class="highlighter-rouge">'RTCGA.methylation'</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="cohorts-names-and-number-of-cases">Cohorts Names and Number of Cases</h1>
+
+<p>The Cancer Genome Atlas provides data via <a href="http://gdac.broadinstitute.org/"><code class="highlighter-rouge">Broad GDAC Firehose</code></a>. The number of cases in the most popular datasets can be checked with the following code that is based on the <a href="http://gdac.broadinstitute.org/"><code class="highlighter-rouge">Broad GDAC Firehose</code></a>.</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">library</span><span class="p">(</span><span class="n">magrittr</span><span class="p">)</span>
+<span class="n">infoTCGA</span><span class="p">()</span> <span class="o">%&gt;%</span>
+ <span class="c1"># select less variables so that tables fits webpage
+</span> <span class="n">dplyr</span><span class="o">::</span><span class="n">select</span><span class="p">(</span><span class="n">Cohort</span><span class="p">,</span> <span class="n">BCR</span><span class="p">,</span> <span class="n">Clinical</span><span class="p">,</span> <span class="n">Methylation</span><span class="p">,</span> <span class="n">mRNASeq</span><span class="p">)</span> <span class="o">%&gt;%</span>
+ <span class="n">head</span><span class="p">()</span> <span class="o">%&gt;%</span> <span class="c1"># without that you can see all cohorts
+</span> <span class="n">knitr</span><span class="o">::</span><span class="n">kable</span><span class="p">()</span></code></pre></figure>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left"> </th>
+      <th style="text-align: left">Cohort</th>
+      <th style="text-align: left">BCR</th>
+      <th style="text-align: left">Clinical</th>
+      <th style="text-align: left">Methylation</th>
+      <th style="text-align: left">mRNASeq</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">ACC-counts</td>
+      <td style="text-align: left">ACC</td>
+      <td style="text-align: left">92</td>
+      <td style="text-align: left">92</td>
+      <td style="text-align: left">80</td>
+      <td style="text-align: left">79</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">BLCA-counts</td>
+      <td style="text-align: left">BLCA</td>
+      <td style="text-align: left">412</td>
+      <td style="text-align: left">412</td>
+      <td style="text-align: left">412</td>
+      <td style="text-align: left">408</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">BRCA-counts</td>
+      <td style="text-align: left">BRCA</td>
+      <td style="text-align: left">1098</td>
+      <td style="text-align: left">1097</td>
+      <td style="text-align: left">1097</td>
+      <td style="text-align: left">1093</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">CESC-counts</td>
+      <td style="text-align: left">CESC</td>
+      <td style="text-align: left">307</td>
+      <td style="text-align: left">307</td>
+      <td style="text-align: left">307</td>
+      <td style="text-align: left">304</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">CHOL-counts</td>
+      <td style="text-align: left">CHOL</td>
+      <td style="text-align: left">51</td>
+      <td style="text-align: left">45</td>
+      <td style="text-align: left">36</td>
+      <td style="text-align: left">36</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">COAD-counts</td>
+      <td style="text-align: left">COAD</td>
+      <td style="text-align: left">460</td>
+      <td style="text-align: left">458</td>
+      <td style="text-align: left">457</td>
+      <td style="text-align: left">457</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Furthermore <code class="highlighter-rouge">infoTCGA()</code> enables to extract possible cohorts names from TCGA Study.</p>
+
+<p><strong>Cohorts’ names stand for abbreviations of real names of cancer types.</strong></p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="p">(</span><span class="n">cohorts</span> <span class="o">&lt;-</span> <span class="n">infoTCGA</span><span class="p">()</span> <span class="o">%&gt;%</span> 
+<span class="n">rownames</span><span class="p">()</span> <span class="o">%&gt;%</span> 
+   <span class="n">sub</span><span class="p">(</span><span class="s1">'-counts'</span><span class="p">,</span> <span class="s1">''</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="err">.</span><span class="p">))</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text"> [1] "ACC"      "BLCA"     "BRCA"     "CESC"     "CHOL"     "COAD"     "COADREAD" "DLBC"     "ESCA"     "FPPP"    
+[11] "GBM"      "GBMLGG"   "HNSC"     "KICH"     "KIPAN"    "KIRC"     "KIRP"     "LAML"     "LGG"      "LIHC"    
+[21] "LUAD"     "LUSC"     "MESO"     "OV"       "PAAD"     "PCPG"     "PRAD"     "READ"     "SARC"     "SKCM"    
+[31] "STAD"     "STES"     "TGCT"     "THCA"     "THYM"     "UCEC"     "UCS"      "UVM"     </code></pre></figure>
+
+<h1 id="datasets-dates-of-release">Datasets dates of release</h1>
+
+<p>The Cancer Genome Atlas provides datasets in many dates of release. You can check them with the following command.</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">checkTCGA</span><span class="p">(</span><span class="s1">'Dates'</span><span class="p">)</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text"> [1] "2011-10-26" "2011-11-15" "2011-11-28" "2011-12-06" "2011-12-30" "2012-01-10" "2012-01-24" "2012-02-17"
+ [9] "2012-03-06" "2012-03-21" "2012-04-12" "2012-04-25" "2012-05-15" "2012-05-25" "2012-06-06" "2012-06-23"
+[17] "2012-07-07" "2012-07-25" "2012-08-04" "2012-08-25" "2012-09-13" "2012-10-04" "2012-10-18" "2012-10-20"
+[25] "2012-10-24" "2012-11-02" "2012-11-14" "2012-12-06" "2012-12-21" "2013-01-16" "2013-02-03" "2013-02-22"
+[33] "2013-03-09" "2013-03-26" "2013-04-06" "2013-04-21" "2013-05-08" "2013-05-23" "2013-06-06" "2013-06-23"
+[41] "2013-07-15" "2013-08-09" "2013-09-23" "2013-10-10" "2013-11-14" "2013-12-10" "2014-01-15" "2014-02-15"
+[49] "2014-03-16" "2014-04-16" "2014-05-18" "2014-06-14" "2014-07-15" "2014-09-02" "2014-10-17" "2014-12-06"
+[57] "2015-02-02" "2015-02-04" "2015-04-02" "2015-06-01" "2015-08-21" "2015-11-01" "2016-01-28"</code></pre></figure>
+
+<h1 id="datasets-names-for-a-specific-cohort-type">Datasets names for a specific cohort type</h1>
+
+<p>The Cancer Genome Atlas provides various datasets for different cohort types. For example you can check all names of datasets provided for <code class="highlighter-rouge">BRCA</code> with (second dimension stand for dataset size).</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">checkTCGA</span><span class="p">(</span>
+	<span class="s1">'DataSets'</span><span class="p">,</span>
+	<span class="n">cancerType</span> <span class="o">=</span> <span class="s1">'BRCA'</span><span class="p">,</span>
+	<span class="n">date</span> <span class="o">=</span> <span class="s1">'2016-01-28'</span>
+<span class="p">)</span> <span class="o">%&gt;%</span> <span class="n">dim</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">[1] 43  2</code></pre></figure>
+
+<p>This lists only <code class="highlighter-rouge">.zip</code> files.</p>
+
+<h1 id="data-download">Data Download</h1>
+
+<p>If you know which cohort type you are interested in and which dataset name you are looking for and which release date suits you, you can download a dataset provided by TCGA Study with the following command.</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">dir.create</span><span class="p">(</span><span class="s2">"download_folder"</span><span class="p">)</span>
+<span class="n">downloadTCGA</span><span class="p">(</span>
+	<span class="n">cancerTypes</span> <span class="o">=</span> <span class="s2">"BRCA"</span><span class="p">,</span>
+	<span class="n">dataSet</span> <span class="o">=</span> <span class="s2">"Merge_Clinical.Level_1"</span><span class="p">,</span>
+	<span class="n">destDir</span> <span class="o">=</span> <span class="s2">"download_folder"</span>
+<span class="p">)</span></code></pre></figure>
+
+<p>You can specify <code class="highlighter-rouge">cancerTypes</code> as a vector of characters if you would like to download the same dataset type for many cohorts. 
+Moreover you can just specify an abbreviation ora fragment of dataset name. 
+You can also specify <code class="highlighter-rouge">date</code> argument if you would like to download datasets from previous (not the newest) releases.
+All downloaded datasets are untarred and their <code class="highlighter-rouge">.tar</code> files are deleted after untarring. You can also change this behaviour with <code class="highlighter-rouge">untarFile</code> and <code class="highlighter-rouge">removeTar</code> arguments. Sometimes more than one dataset fits the character provieded in <code class="highlighter-rouge">dataSet</code> argument, then the first without <code class="highlighter-rouge">FPPP</code> string is downloaded if possible. If you are interested in all datasets then you can change <code class="highlighter-rouge">allDataSets</code> (by default <code class="highlighter-rouge">FALSE</code>) parameter to <code class="highlighter-rouge">TRUE</code>.</p>
+
+<h1 id="read-specific-datasets">Read Specific Datasets</h1>
+
+<p>For specific datasets it is possible to read downloaded file into the tidy format. Fore more information check</p>
+
+<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="o">?</span><span class="n">readTCGA</span></code></pre></figure>
+
+
+
+  
+  <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<a class="fb-share-button" data-href="https://rtcga.github.io/RTCGA" data-layout="button_count"></a>
+  
+
+  
+  <a href="https://twitter.com/share" class="twitter-share-button"{count}>Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  
+
+  
+  <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
+<script type="IN/Share" data-url="https://rtcga.github.io/RTCGA" data-counter="right"></script>
+  
+  
+  
+  <a class="g-plus" data-action="share" data-annotation="none" data-href="https://rtcga.github.io/RTCGA"></a>
+  
+
+
+  
+  
+<div id="disqus_thread"></div>
+
+<script>(function() {
+        var d = document, s = d.createElement('script');
+        s.src = '//RTCGA.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+  
+</div>
+
+
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+      
+      <!-- Place this tag in your head or just before your close body tag. -->
+  		<!-- google plus shares -->
+      <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+  </body>
+</html>

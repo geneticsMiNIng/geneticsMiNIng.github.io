@@ -1,0 +1,39 @@
+---
+layout:  page
+title: "RTCGA"
+comments:  true
+published:  true
+author: "Marcin Kosiński"
+date: 2016-05-04 
+categories: [projects]
+output:
+  html_document:
+    mathjax:  default
+    fig_caption:  true
+---
+
+
+* R Toolkit for Biostatistics
+* About RTCGA Project
+{:toc}
+
+
+# R Toolkit for Biostatistics
+<img src='https://raw.githubusercontent.com/RTCGA/RTCGA/master/RTCGA_workflow_ver3.png'> 
+
+> The Cancer Genome Atlas (TCGA) is a comprehensive and coordinated effort to accelerate our understanding of the molecular basis of cancer through the application of genome analysis technologies, including large-scale genome sequencing. 
+
+
+We converted selected datasets from this study into few separate packages that are hosted on Bioconductor. These R packages make selected datasets easier to access and manage. Data sets in RTCGA.data packages are large and cover complex relations between clinical outcomes and genetic background.
+
+Packages from the RTCGA factory  will be useful for at least three audiences: biostatisticians that work with cancer data; researchers that are working on large scale algorithms, for them RTGCA data will be a perfect blasting site; teachers that are presenting data analysis method on real data problems. 
+
+# About RTCGA Project 
+
+- [Quick Guide](https://r-addict/2016/05/04/RTCGA-Quick-Guide.html)
+- [Project website](http://rtcga.github.io/RTCGA/)
+- [Documentation](http://rtcga.github.io/RTCGA/staticdocs/)
+- [Examples](http://rtcga.github.io/RTCGA/Visualizations.html)
+
+# How project can be extended?
+

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title>genetics MiNIng</title>
+ <link href="https://geneticsmining.github.io/atom.xml" rel="self"/>
+ <link href="https://geneticsmining.github.io/"/>
+ <updated>2016-05-04T21:26:21+02:00</updated>
+ <id>https://geneticsmining.github.io</id>
+ <author>
+   <name>Marcin Kosiński</name>
+   <email></email>
+ </author>
+
+ 
+
+</feed>
