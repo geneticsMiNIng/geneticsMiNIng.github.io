@@ -1,0 +1,40 @@
+---
+title: "<br><small> [mstate](https://cran.r-project.org/web/packages/mstate/index.html): przygotowanie danych, estymacja i predykcja w modelach wielostanowych </small>"
+subtitle: "<small> <br>[Marcin Kosiński](http://r-addict.com/About.html) </small>"
+author: "<small><a href='https://r-addict.com'><i class='fa fa-comment'></i></a>&nbsp;&nbsp;<a href='https://stackoverflow.com/users/3857701'><i class='fa fa-stack-overflow'></i></a>&nbsp;&nbsp;<a href='https://github.com/MarcinKosinski'><i class='fa fa-github'></i></a>&nbsp;&nbsp;<a href='mailto:m.p.kosinski@gmail.com'><i class='fa fa-envelope-o'></i></a></small><br>"
+date: 24 Października, 2016
+output:
+  revealjs::revealjs_presentation:
+    css: github_fork.css
+    theme: white
+    highlight: pygments
+    self_contained: false
+    center: true
+    reveal_options:
+      slideNumber: true
+---
+
+
+
+```{r, include=FALSE}
+# edit main page with file.edit(system.file("rmarkdown/templates/revealjs_presentation/resources/default.html",package="revealjs"))
+# line 126
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+library(knitr)
+opts_chunk$set(
+	comment = "",
+	fig.width = 12, 
+	message = FALSE,
+	warning = FALSE,
+	tidy.opts = list(
+		keep.blank.line = TRUE,	
+		width.cutoff = 150
+		),
+	options(width = 80),
+	eval = TRUE
+)
+```
+
+# Model wielostanowy
+
+<img src="http://smarterpoland.pl/wp-content/uploads/2016/06/Screen-Shot-2016-06-26-at-10.00.27-1024x651.png" alt="shiny" style="width:450px;height:300px;">
