@@ -28,7 +28,7 @@ opts_chunk$set(
 	warning = FALSE,
 	tidy.opts = list(
 		keep.blank.line = TRUE,	
-		width.cutoff = 150
+		width.cutoff = 80
 		),
 	options(width = 80),
 	eval = TRUE
@@ -37,4 +37,172 @@ opts_chunk$set(
 
 # Model wielostanowy
 
-<img src="http://smarterpoland.pl/wp-content/uploads/2016/06/Screen-Shot-2016-06-26-at-10.00.27-1024x651.png" alt="shiny" style="width:450px;height:300px;">
+## Model wielostanowy
+
+<img src="https://raw.githubusercontent.com/geneticsMiNIng/geneticsMiNIng.github.io/master/mstate/presentation/mstate1.png">
+
+## Model wielostanowy - macierz przejść
+
+
+```{r}
+library(mstate)
+(transMat(list(c(2,3,5,6), c(4,5,6), c(4,5,6), c(5,6), c(), c()),
+  names=c("Tx", "Rec", "AE", "Rec+AE", "Rel", "Death")) -> tmat)
+```
+
+
+# Pytanie badawcze
+
+## Pytanie badawcze
+
+Efekt zmiennych w każdym z możliwych przejść.
+
+# Dane - przygotowanie
+
+## Przykładowe Dane - ebmt4
+
+```{r}
+data("ebmt4");head(ebmt4)
+```
+
+## Przykładowe Dane - ebmt4
+
+<img src="https://raw.githubusercontent.com/geneticsMiNIng/geneticsMiNIng.github.io/master/mstate/presentation/mstate2.png">
+
+## Kodowanie danych
+
+```{r}
+msebmt <- msprep(
+  data = ebmt4, trans = tmat, 
+  time = c(NA, "rec", "ae", "recae", "rel", "srv"),
+status = c(NA, "rec.s", "ae.s", "recae.s", "rel.s", "srv.s"),
+  keep = c("match", "proph", "year", "agecl"))
+msebmt[msebmt$id == 1, c(1:8, 10:12)]
+```
+
+## Kodowanie danych 2
+
+```{r}
+msebmt2 <- expand.covs(msebmt, longnames = FALSE,
+                       c("match", "proph", "year", "agecl"))
+msebmt2[msebmt2$id == 1, -c(9:10, 12:48, 61:84)]
+```
+
+
+
+## Liczba przejść
+
+```{r}
+events(msebmt)$Frequencies
+round(events(msebmt)$Proportions,2)
+```
+
+
+## Małe porządki
+
+```{r}
+msebmt2[, c("Tstart", "Tstop", "time")] <-
+msebmt2[, c("Tstart", "Tstop", "time")]/365.25
+```
+
+# Modele
+
+## Model nieparametryczny
+
+```{r}
+library(survival)
+c0 <- coxph(Surv(Tstart, Tstop, status)~strata(trans),
+            data = msebmt2, method = "breslow")
+```
+
+<small>
+
+> This Cox model has separate baseline hazards for each of the transitions and no covariates. In principle, the transition intensities could also be estimated separately, but the combined use of long format data and a single stratified `coxph` object makes further calculations easier. 
+
+</small>
+
+```{r}
+msf0 <- msfit(object = c0, vartype = "greenwood", trans = tmat)
+# msfit estimates transition hazards
+```
+
+## Model nieparametryczny
+
+```{r}
+#summary(msf0)
+head(msf0$Haz)
+tail(msf0$Haz)
+```
+
+## Wykres sk. hazardów
+
+```{r}
+plot(msf0, las = 1, lty = rep(1:2, c(8, 4)),
+     xlab = "Years since transplantation")
+```
+
+# Predykcja
+
+## Wspomagacz
+
+```{r}
+library(colorspace)
+state_cols <- heat_hcl(6,
+                      c = c(80, 30), 
+                      l= c(30, 90),
+                 power = c(1/5,2))[6:1]
+ord <- c(2, 4, 3, 5, 6, 1)
+```
+
+
+## Stan 1, czas = 0 dni
+
+```{r}
+pt0 <- probtrans(msf0, predt = 0, method = "greenwood")
+plot(pt0, ord = ord, las = 1, col = state_cols[ord],
+     xlab = "Years since transplantation", type = "filled")
+```
+
+## Stan 1 a 3, czas = 100 dni
+
+```{r}
+pt100 <- probtrans(msf0, predt = 100/365.25, method = "greenwood"); par(mfrow=c(1,2))
+plot(pt100, ord = ord, xlim = c(0,10), las = 1, type = "filled", col = state_cols[ord], main = "Zaczynając od stanu 1")
+plot(pt100, from = 3, ord = ord, xlim = c(0,10), las = 1, type = "filled", col = state_cols[ord], main = "Zaczynając od stanu 3")
+```
+
+
+# Model parametryczny
+
+## Model parametryczny
+
+`mvna`, `etm` - także wspierają obliczenia skumulowanych hazardów
+
+jednak nie mają wsparcia dla modeli semi-parametrycznych, jak model Coxa.
+
+## Model parametryczny
+
+```{r, eval=FALSE}
+cfull <- coxph(Surv(Tstart, Tstop, status)~
+                 match.1 + ... + match.12 +
+               + proph.1 + ... + proph.12 + 
+               + ... + strata(trans), data = msebmt, method = "breslow")
+```
+
+
+<img src="https://raw.githubusercontent.com/geneticsMiNIng/geneticsMiNIng.github.io/master/mstate/presentation/mstate3.png">
+
+# Uwagi
+
+## Uwagi
+
+- Nie sprawdzano założeń i dopasowania modelu.
+
+Możliwe udoskonalenia
+
+- input do `coxph` w postaci macierzy rzadkiej
+- funkcja `msdata` do tworzenia nowych obserwacji
+- wykresy diagnostyczne w `ggplot2` 
+
+
+# Bibliografia

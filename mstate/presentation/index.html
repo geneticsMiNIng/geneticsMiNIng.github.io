@@ -4,13 +4,50 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="author" content="" />
-  <title>  mstat2: przygotowanie danych, estymacja i predykcja w modelach wielostanowych</title>
+  <title>  mstate: przygotowanie danych, estymacja i predykcja w modelach wielostanowych</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
   <link rel="stylesheet" href="index_files/reveal.js-3.3.0/css/reveal.css"/>
 
 
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
 
 <link rel="stylesheet" href="index_files/reveal.js-3.3.0/css/theme/white.css" id="theme">
 
@@ -79,13 +116,204 @@
     <div class="slides">
 
 <section data-background-image="imgs/bg-small.png">
-    <h1 class="title"><br><small> <a href="https://cran.r-project.org/web/packages/mstate/index.html">mstat2</a>: przygotowanie danych, estymacja i predykcja w modelach wielostanowych </small></h1>
+    <h1 class="title"><br><small> <a href="https://cran.r-project.org/web/packages/mstate/index.html">mstate</a>: przygotowanie danych, estymacja i predykcja w modelach wielostanowych </small></h1>
   <h1 class="subtitle"><small> <br><a href="http://r-addict.com/About.html">Marcin Kosiński</a> </small></h1>
     <h2 class="author"><small><a href='https://r-addict.com'><i class='fa fa-comment'></i></a>  <a href='https://stackoverflow.com/users/3857701'><i class='fa fa-stack-overflow'></i></a>  <a href='https://github.com/MarcinKosinski'><i class='fa fa-github'></i></a>  <a href='mailto:m.p.kosinski@gmail.com'><i class='fa fa-envelope-o'></i></a></small><br></h2>
     <h3 class="date">24 Października, 2016</h3>
 </section>
 
-<section><section id="model-wielostanowy" class="titleslide slide level1"><h1>Model wielostanowy</h1></section></section>
+<section><section id="model-wielostanowy" class="titleslide slide level1"><h1>Model wielostanowy</h1></section><section id="model-wielostanowy-1" class="slide level2">
+<h1>Model wielostanowy</h1>
+<p><img src="https://raw.githubusercontent.com/geneticsMiNIng/geneticsMiNIng.github.io/master/mstate/presentation/mstate1.png"></p>
+</section><section id="model-wielostanowy---macierz-przejsc" class="slide level2">
+<h1>Model wielostanowy - macierz przejść</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(mstate)
+(<span class="kw">transMat</span>(<span class="kw">list</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">6</span>), <span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>), <span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>), <span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">6</span>), <span class="kw">c</span>(), <span class="kw">c</span>()),
+  <span class="dt">names=</span><span class="kw">c</span>(<span class="st">&quot;Tx&quot;</span>, <span class="st">&quot;Rec&quot;</span>, <span class="st">&quot;AE&quot;</span>, <span class="st">&quot;Rec+AE&quot;</span>, <span class="st">&quot;Rel&quot;</span>, <span class="st">&quot;Death&quot;</span>)) -&gt;<span class="st"> </span>tmat)</code></pre></div>
+<pre><code>        to
+from     Tx Rec AE Rec+AE Rel Death
+  Tx     NA   1  2     NA   3     4
+  Rec    NA  NA NA      5   6     7
+  AE     NA  NA NA      8   9    10
+  Rec+AE NA  NA NA     NA  11    12
+  Rel    NA  NA NA     NA  NA    NA
+  Death  NA  NA NA     NA  NA    NA</code></pre>
+</section></section>
+<section><section id="pytanie-badawcze" class="titleslide slide level1"><h1>Pytanie badawcze</h1></section><section id="pytanie-badawcze-1" class="slide level2">
+<h1>Pytanie badawcze</h1>
+<p>Efekt zmiennych w każdym z możliwych przejść (ang. <em>transition</em>).</p>
+</section></section>
+<section><section id="dane---przygotowanie" class="titleslide slide level1"><h1>Dane - przygotowanie</h1></section><section id="przykadowe-dane---ebmt4" class="slide level2">
+<h1>Przykładowe Dane - ebmt4</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;ebmt4&quot;</span>);<span class="kw">head</span>(ebmt4)</code></pre></div>
+<pre><code>  id  rec rec.s   ae ae.s recae recae.s  rel rel.s  srv srv.s      year agecl
+1  1   22     1  995    0   995       0  995     0  995     0 1995-1998 20-40
+2  2   29     1   12    1    29       1  422     1  579     1 1995-1998 20-40
+3  3 1264     0   27    1  1264       0 1264     0 1264     0 1995-1998 20-40
+4  4   50     1   42    1    50       1   84     1  117     1 1995-1998 20-40
+5  5   22     1 1133    0  1133       0  114     1 1133     0 1995-1998   &gt;40
+6  6   33     1   27    1    33       1 1427     0 1427     0 1995-1998 20-40
+  proph              match
+1    no no gender mismatch
+2    no no gender mismatch
+3    no no gender mismatch
+4    no    gender mismatch
+5    no    gender mismatch
+6    no no gender mismatch</code></pre>
+</section><section id="przykadowe-dane---ebmt4-1" class="slide level2">
+<h1>Przykładowe Dane - ebmt4</h1>
+<p><img src="https://raw.githubusercontent.com/geneticsMiNIng/geneticsMiNIng.github.io/master/mstate/presentation/mstate2.png"></p>
+</section><section id="kodowanie-danych" class="slide level2">
+<h1>Kodowanie danych</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">msebmt &lt;-<span class="st"> </span><span class="kw">msprep</span>(
+  <span class="dt">data =</span> ebmt4, <span class="dt">trans =</span> tmat, 
+  <span class="dt">time =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="st">&quot;rec&quot;</span>, <span class="st">&quot;ae&quot;</span>, <span class="st">&quot;recae&quot;</span>, <span class="st">&quot;rel&quot;</span>, <span class="st">&quot;srv&quot;</span>),
+<span class="dt">status =</span> <span class="kw">c</span>(<span class="ot">NA</span>, <span class="st">&quot;rec.s&quot;</span>, <span class="st">&quot;ae.s&quot;</span>, <span class="st">&quot;recae.s&quot;</span>, <span class="st">&quot;rel.s&quot;</span>, <span class="st">&quot;srv.s&quot;</span>),
+  <span class="dt">keep =</span> <span class="kw">c</span>(<span class="st">&quot;match&quot;</span>, <span class="st">&quot;proph&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="st">&quot;agecl&quot;</span>))
+msebmt[msebmt$id ==<span class="st"> </span><span class="dv">1</span>, <span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">8</span>, <span class="dv">10</span>:<span class="dv">12</span>)]</code></pre></div>
+<pre><code>An object of class &#39;msdata&#39;
+
+Data:
+  id from to trans Tstart Tstop time status proph      year agecl
+1  1    1  2     1      0    22   22      1    no 1995-1998 20-40
+2  1    1  3     2      0    22   22      0    no 1995-1998 20-40
+3  1    1  5     3      0    22   22      0    no 1995-1998 20-40
+4  1    1  6     4      0    22   22      0    no 1995-1998 20-40
+5  1    2  4     5     22   995  973      0    no 1995-1998 20-40
+6  1    2  5     6     22   995  973      0    no 1995-1998 20-40
+7  1    2  6     7     22   995  973      0    no 1995-1998 20-40</code></pre>
+</section><section id="kodowanie-danych-2" class="slide level2">
+<h1>Kodowanie danych 2</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">msebmt2 &lt;-<span class="st"> </span><span class="kw">expand.covs</span>(msebmt, <span class="dt">longnames =</span> <span class="ot">FALSE</span>,
+                       <span class="kw">c</span>(<span class="st">&quot;match&quot;</span>, <span class="st">&quot;proph&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="st">&quot;agecl&quot;</span>))
+msebmt2[msebmt2$id ==<span class="st"> </span><span class="dv">1</span>, -<span class="kw">c</span>(<span class="dv">9</span>:<span class="dv">10</span>, <span class="dv">12</span>:<span class="dv">48</span>, <span class="dv">61</span>:<span class="dv">84</span>)]</code></pre></div>
+<pre><code>An object of class &#39;msdata&#39;
+
+Data:
+  id from to trans Tstart Tstop time status      year year2.1 year2.2 year2.3
+1  1    1  2     1      0    22   22      1 1995-1998       1       0       0
+2  1    1  3     2      0    22   22      0 1995-1998       0       1       0
+3  1    1  5     3      0    22   22      0 1995-1998       0       0       1
+4  1    1  6     4      0    22   22      0 1995-1998       0       0       0
+5  1    2  4     5     22   995  973      0 1995-1998       0       0       0
+6  1    2  5     6     22   995  973      0 1995-1998       0       0       0
+7  1    2  6     7     22   995  973      0 1995-1998       0       0       0
+  year2.4 year2.5 year2.6 year2.7 year2.8 year2.9 year2.10 year2.11 year2.12
+1       0       0       0       0       0       0        0        0        0
+2       0       0       0       0       0       0        0        0        0
+3       0       0       0       0       0       0        0        0        0
+4       1       0       0       0       0       0        0        0        0
+5       0       1       0       0       0       0        0        0        0
+6       0       0       1       0       0       0        0        0        0
+7       0       0       0       1       0       0        0        0        0</code></pre>
+</section><section id="liczba-przejsc" class="slide level2">
+<h1>Liczba przejść</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">events</span>(msebmt)$Frequencies</code></pre></div>
+<pre><code>        to
+from       Tx  Rec   AE Rec+AE  Rel Death no event total entering
+  Tx        0  785  907      0   95   160      332           2279
+  Rec       0    0    0    227  112    39      407            785
+  AE        0    0    0    433   56   197      221            907
+  Rec+AE    0    0    0      0  107   137      416            660
+  Rel       0    0    0      0    0     0      370            370
+  Death     0    0    0      0    0     0      533            533</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(<span class="kw">events</span>(msebmt)$Proportions,<span class="dv">2</span>)</code></pre></div>
+<pre><code>        to
+from       Tx  Rec   AE Rec+AE  Rel Death no event
+  Tx     0.00 0.34 0.40   0.00 0.04  0.07     0.15
+  Rec    0.00 0.00 0.00   0.29 0.14  0.05     0.52
+  AE     0.00 0.00 0.00   0.48 0.06  0.22     0.24
+  Rec+AE 0.00 0.00 0.00   0.00 0.16  0.21     0.63
+  Rel    0.00 0.00 0.00   0.00 0.00  0.00     1.00
+  Death  0.00 0.00 0.00   0.00 0.00  0.00     1.00</code></pre>
+</section><section id="mae-porzadki" class="slide level2">
+<h1>Małe porządki</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">msebmt2[, <span class="kw">c</span>(<span class="st">&quot;Tstart&quot;</span>, <span class="st">&quot;Tstop&quot;</span>, <span class="st">&quot;time&quot;</span>)] &lt;-
+msebmt2[, <span class="kw">c</span>(<span class="st">&quot;Tstart&quot;</span>, <span class="st">&quot;Tstop&quot;</span>, <span class="st">&quot;time&quot;</span>)]/<span class="fl">365.25</span></code></pre></div>
+</section></section>
+<section><section id="modele" class="titleslide slide level1"><h1>Modele</h1></section><section id="model-nieparametryczny" class="slide level2">
+<h1>Model nieparametryczny</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(survival)
+c0 &lt;-<span class="st"> </span><span class="kw">coxph</span>(<span class="kw">Surv</span>(Tstart, Tstop, status)~<span class="kw">strata</span>(trans),
+            <span class="dt">data =</span> msebmt2, <span class="dt">method =</span> <span class="st">&quot;breslow&quot;</span>)</code></pre></div>
+<p><small></p>
+<blockquote>
+<p>This Cox model has separate baseline hazards for each of the transitions and no covariates. In principle, the transition intensities could also be estimated separately, but the combined use of long format data and a single stratified <code>coxph</code> object makes further calculations easier.</p>
+</blockquote>
+<p></small></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">msf0 &lt;-<span class="st"> </span><span class="kw">msfit</span>(<span class="dt">object =</span> c0, <span class="dt">vartype =</span> <span class="st">&quot;greenwood&quot;</span>, <span class="dt">trans =</span> tmat)
+<span class="co"># msfit estimates transition hazards</span></code></pre></div>
+</section><section id="model-nieparametryczny-1" class="slide level2">
+<h1>Model nieparametryczny</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#summary(msf0)</span>
+<span class="kw">head</span>(msf0$Haz)</code></pre></div>
+<pre><code>         time         Haz trans
+1 0.002737851 0.000000000     1
+2 0.008213552 0.000000000     1
+3 0.010951403 0.000000000     1
+4 0.013689254 0.000000000     1
+5 0.016427105 0.000443066     1
+6 0.019164956 0.001333142     1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tail</span>(msf0$Haz)</code></pre></div>
+<pre><code>         time       Haz trans
+6199 12.48460 0.3800455    12
+6200 12.61602 0.3800455    12
+6201 13.02396 0.3800455    12
+6202 13.10609 0.3800455    12
+6203 13.12799 0.4255001    12
+6204 17.24572 0.4255001    12</code></pre>
+</section><section id="wykres-sk.-hazardow" class="slide level2">
+<h1>Wykres sk. hazardów</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(msf0, <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">lty =</span> <span class="kw">rep</span>(<span class="dv">1</span>:<span class="dv">2</span>, <span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">4</span>)),
+     <span class="dt">xlab =</span> <span class="st">&quot;Years since transplantation&quot;</span>)</code></pre></div>
+<p><img src="index_files/figure-revealjs/unnamed-chunk-11-1.png" width="1152" /></p>
+</section></section>
+<section><section id="predykcja" class="titleslide slide level1"><h1>Predykcja</h1></section><section id="wspomagacz" class="slide level2">
+<h1>Wspomagacz</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(colorspace)
+state_cols &lt;-<span class="st"> </span><span class="kw">heat_hcl</span>(<span class="dv">6</span>,
+                      <span class="dt">c =</span> <span class="kw">c</span>(<span class="dv">80</span>, <span class="dv">30</span>), 
+                      <span class="dt">l=</span> <span class="kw">c</span>(<span class="dv">30</span>, <span class="dv">90</span>),
+                 <span class="dt">power =</span> <span class="kw">c</span>(<span class="dv">1</span>/<span class="dv">5</span>,<span class="dv">2</span>))[<span class="dv">6</span>:<span class="dv">1</span>]
+ord &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">1</span>)</code></pre></div>
+</section><section id="stan-1-czas-0-dni" class="slide level2">
+<h1>Stan 1, czas = 0 dni</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pt0 &lt;-<span class="st"> </span><span class="kw">probtrans</span>(msf0, <span class="dt">predt =</span> <span class="dv">0</span>, <span class="dt">method =</span> <span class="st">&quot;greenwood&quot;</span>)
+<span class="kw">plot</span>(pt0, <span class="dt">ord =</span> ord, <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">col =</span> state_cols[ord],
+     <span class="dt">xlab =</span> <span class="st">&quot;Years since transplantation&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;filled&quot;</span>)</code></pre></div>
+<p><img src="index_files/figure-revealjs/unnamed-chunk-13-1.png" width="1152" /></p>
+</section><section id="stan-1-a-3-czas-100-dni" class="slide level2">
+<h1>Stan 1 a 3, czas = 100 dni</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pt100 &lt;-<span class="st"> </span><span class="kw">probtrans</span>(msf0, <span class="dt">predt =</span> <span class="dv">100</span>/<span class="fl">365.25</span>, <span class="dt">method =</span> <span class="st">&quot;greenwood&quot;</span>); <span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
+<span class="kw">plot</span>(pt100, <span class="dt">ord =</span> ord, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">10</span>), <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">type =</span> <span class="st">&quot;filled&quot;</span>, <span class="dt">col =</span> state_cols[ord], <span class="dt">main =</span> <span class="st">&quot;Zaczynając od stanu 1&quot;</span>)
+<span class="kw">plot</span>(pt100, <span class="dt">from =</span> <span class="dv">3</span>, <span class="dt">ord =</span> ord, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">10</span>), <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">type =</span> <span class="st">&quot;filled&quot;</span>, <span class="dt">col =</span> state_cols[ord], <span class="dt">main =</span> <span class="st">&quot;Zaczynając od stanu 3&quot;</span>)</code></pre></div>
+<p><img src="index_files/figure-revealjs/unnamed-chunk-14-1.png" width="1152" /></p>
+</section></section>
+<section><section id="model-parametryczny" class="titleslide slide level1"><h1>Model parametryczny</h1></section><section id="model-parametryczny-1" class="slide level2">
+<h1>Model parametryczny</h1>
+<p><code>mvna</code>, <code>etm</code> - także wspierają obliczenia skumulowanych hazardów</p>
+<p>jednak nie mają wsparcia dla modeli semi-parametrycznych, jak model Coxa.</p>
+</section><section id="model-parametryczny-2" class="slide level2">
+<h1>Model parametryczny</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cfull &lt;-<span class="st"> </span><span class="kw">coxph</span>(<span class="kw">Surv</span>(Tstart, Tstop, status)~
+<span class="st">                 </span>match<span class="fl">.1</span> +<span class="st"> </span>... +<span class="st"> </span>match<span class="fl">.12</span> +
+<span class="st">               </span>+<span class="st"> </span>proph<span class="fl">.1</span> +<span class="st"> </span>... +<span class="st"> </span>proph<span class="fl">.12</span> +<span class="st"> </span>
+<span class="st">               </span>+<span class="st"> </span>... +<span class="st"> </span><span class="kw">strata</span>(trans), <span class="dt">data =</span> msebmt, <span class="dt">method =</span> <span class="st">&quot;breslow&quot;</span>)</code></pre></div>
+<p><img src="https://raw.githubusercontent.com/geneticsMiNIng/geneticsMiNIng.github.io/master/mstate/presentation/mstate3.png"></p>
+</section></section>
+<section><section id="uwagi" class="titleslide slide level1"><h1>Uwagi</h1></section><section id="uwagi-1" class="slide level2">
+<h1>Uwagi</h1>
+<ul>
+<li>Nie sprawdzano założeń i dopasowania modelu.</li>
+</ul>
+<p>Możliwe udoskonalenia</p>
+<ul>
+<li>input do <code>coxph</code> w postaci macierzy rzadkiej</li>
+<li>funkcja <code>msdata</code> do tworzenia nowych obserwacji</li>
+<li>wykresy diagnostyczne w <code>ggplot2</code></li>
+</ul>
+</section></section>
+<section><section id="bibliografia" class="titleslide slide level1"><h1>Bibliografia</h1></section></section>
     </div>
   </div>
 
