@@ -1,8 +1,10 @@
-W semestrze 2016/2017 seminarium prowadzone jest w godzinach 15:30-16:30 w poniedziałki w pokoju 222 (Koszykowa 75, gmach MiNI PW).
+### W semestrze 2016/2017 seminarium prowadzone jest w godzinach 15:30-16:30 w poniedziałki w pokoju 222 (Koszykowa 75, gmach MiNI PW).
+
+#### Prezentacje
 
 5 XII 2016 -
 Techniki NGS i problemy z organizmami niemodelowymi
-<a href="http://perlism.org/akloch/">dr Agnieszka Kloch</a>
+<a href="http://perlism.org/akloch/">dr Agnieszka Kloch</a>, WB UW
 
 
 21 XI 2016 -
