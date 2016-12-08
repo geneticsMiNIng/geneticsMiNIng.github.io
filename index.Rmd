@@ -1,0 +1,50 @@
+---
+title: "Analiza metylacji - to brzmi dziwnie"
+subtitle: "<small> <br>Aleksandra Brodecka &nbsp;&nbsp;[Marcin Kosiński](http://r-addict.com/About.html) </small>"
+author: "<small><a href='https://stackoverflow.com/users/3857701'><i class='fa fa-stack-overflow'></i></a>&nbsp;&nbsp;<a href='https://github.com/MarcinKosinski'><i class='fa fa-github'></i></a>&nbsp;&nbsp;<a href='mailto:m.p.kosinski@gmail.com'><i class='fa fa-envelope-o'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='https://r-addict.com'><i class='fa fa-comment'></i></a>&nbsp;&nbsp;<a href='https://stackoverflow.com/users/3857701'><i class='fa fa-stack-overflow'></i></a>&nbsp;&nbsp;<a href='https://github.com/MarcinKosinski'><i class='fa fa-github'></i></a>&nbsp;&nbsp;<a href='mailto:m.p.kosinski@gmail.com'><i class='fa fa-envelope-o'></i></a></small><br>"
+date: 12 Grudnia, 2016
+output:
+  revealjs::revealjs_presentation:
+    theme: black
+    highlight: pygments
+    self_contained: false
+    center: true
+    reveal_options:
+      slideNumber: true
+      previewLinks: true
+---
+
+```{r, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+library(knitr)
+opts_chunk$set(
+	comment = "",
+	fig.width = 12, 
+	message = FALSE,
+	warning = FALSE,
+	tidy.opts = list(
+		keep.blank.line = TRUE,	
+		width.cutoff = 150
+		),
+	options(width = 200),
+	eval = TRUE
+)
+```
+
+# Plan prezentacji
+
+## Plan prezentacji
+
+<small>
+
+- Cel analizy + z kim współpraca (+ewentualnie po co, o ile wiemy)
+- Format danych (head danych RAW, head danych po tranfsormacji)
+- pakiet methylKit - podstawowe ze 2/3 funkcje i obiekty
+- wykresiki z methylKit - te podstawowe, zeby `zobrazowac dane`
+- analiza docelowa - na base
+- analiza docelowa - na regionach długości tysiąc
+- analiza docelowa - na regionach odpowiadających genom
+- jakieś ultra pro-tipy developerskie, które zastosowaliśmy a na co dzień się ich nie stosuje
+- gdzieś prezentacja aplikacji
+
+</small>

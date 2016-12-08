@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="" />
+  <title>Analiza metylacji - to brzmi dziwnie</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="index_files/reveal.js-3.3.0/css/reveal.css"/>
+
+
+
+<link rel="stylesheet" href="index_files/reveal.js-3.3.0/css/theme/black.css" id="theme">
+
+<style type="text/css">
+.reveal section img {
+  background: rgba(255, 255, 255, 0.85);
+}
+</style>
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'index_files/reveal.js-3.3.0/css/print/pdf.css' : 'index_files/reveal.js-3.3.0/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    <!--[if lt IE 9]>
+    <script src="index_files/reveal.js-3.3.0/lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <link href="index_files/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section data-background-image="imgs/bg-small.png">
+    <h1 class="title">Analiza metylacji - to brzmi dziwnie</h1>
+  <h1 class="subtitle"><small> <br>Aleksandra Brodecka   <a href="http://r-addict.com/About.html">Marcin Kosiński</a> </small></h1>
+    <h2 class="author"><small><a href='https://stackoverflow.com/users/3857701'><i class='fa fa-stack-overflow'></i></a>  <a href='https://github.com/MarcinKosinski'><i class='fa fa-github'></i></a>  <a href='mailto:m.p.kosinski@gmail.com'><i class='fa fa-envelope-o'></i></a>                                        <a href='https://r-addict.com'><i class='fa fa-comment'></i></a>  <a href='https://stackoverflow.com/users/3857701'><i class='fa fa-stack-overflow'></i></a>  <a href='https://github.com/MarcinKosinski'><i class='fa fa-github'></i></a>  <a href='mailto:m.p.kosinski@gmail.com'><i class='fa fa-envelope-o'></i></a></small><br></h2>
+    <h3 class="date">12 Grudnia, 2016</h3>
+</section>
+
+<section><section id="plan-prezentacji" class="titleslide slide level1"><h1>Plan prezentacji</h1></section><section id="plan-prezentacji-1" class="slide level2">
+<h1>Plan prezentacji</h1>
+<p><small></p>
+<ul>
+<li>Cel analizy + z kim współpraca (+ewentualnie po co, o ile wiemy)</li>
+<li>Format danych (head danych RAW, head danych po tranfsormacji)</li>
+<li>pakiet methylKit - podstawowe ze 2/3 funkcje i obiekty</li>
+<li>wykresiki z methylKit - te podstawowe, zeby <code>zobrazowac dane</code></li>
+<li>analiza docelowa - na base</li>
+<li>analiza docelowa - na regionach długości tysiąc</li>
+<li>analiza docelowa - na regionach odpowiadających genom</li>
+<li>jakieś ultra pro-tipy developerskie, które zastosowaliśmy a na co dzień się ich nie stosuje</li>
+<li>gdzieś prezentacja aplikacji</li>
+</ul>
+<p></small></p>
+</section></section>
+    </div>
+  </div>
+
+  <script src="index_files/reveal.js-3.3.0/lib/js/head.min.js"></script>
+  <script src="index_files/reveal.js-3.3.0/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: true,
+        // Opens links in an iframe preview overlay
+        previewLinks: true,
+        // Transition style
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>
