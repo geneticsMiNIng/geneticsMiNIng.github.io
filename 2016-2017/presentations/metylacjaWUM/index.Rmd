@@ -48,3 +48,98 @@ opts_chunk$set(
 - gdzieś prezentacja aplikacji
 
 </small>
+
+# Cel analizy i postać danych
+
+## Cel analizy
+
+- Celem analizy jest znalezienie regionów o zróżniocowanym stopniu metylacji (ang. Differentially methylated regions)
+- Współpracujemy z prof. Płoskim (Zakład Genetyki Medycznej WUM)
+
+## Cel analizy
+- Przykład analizy: 
+W badaniu opublikowanym w 2013 roku dokonano porównania stopnia metylacji u kobiet z osteoporozą i kobiet z chorobą zwyrodnieniową stawów. Odkryto około 250 regionów o zróżnicowanym stopniu metylacji. Były to głównie regiony kodujące czynniki transkrypcyjne, które biorą udział w różnicowaniu komórek i tworzenie szkieletu, co sugeruje, że stopień metylacji może istotny przy tworzeniu tych zaburzeń. 
+
+
+## Postać danych
+
+- dwie próbki pochodzące od jednej pacjentki (EK - komórka nie poddana chorobie - ponad 6mln rekordów, EU - komórka poddana chorobie - 11 mln rekordów)
+
+- postać danych przed tranformacją:
+
+
+|CHROM|POS|REF|ALT|DP|AF|meth|unmeth|
+|------|:---:|-----:|-----:|-----:|-----:|-----:|-----:|
+|chrM|106|G|C|9|1|0|9|
+|chr1|2198933|C|G|23|0.3478|15|8|
+|chrY|9269317|C|G|1|1|0|1|
+
+## Postać danych po transformacji:
+
+
+ - jedna próbka - ponad 2 mln rekordów
+ 
+ 
+|chr|start|end|coverage.EK | met.EK |coverage.EU|met.EU|
+|------|:---:|-----:|-----:|-----:|-----:|-----:|
+|chr1|15513|15513|23|1.00|22|1.00|
+|chrY|59033091|59033091|99|0.67|166|0.77|
+|chr20|3139367|3139367|28|0.75|26|0.76|
+
+
+# Pakiet methylKit
+
+## Przydatne funkcje i opis pakietu:
+
+- wczytywanie danych: (muszą być specjalniej postaci! )
+
+```{r, eval = F}
+file.list <- list("Sample_40092EK.tab",
+                  "Sample_40092EU.tab")
+
+myobj=methRead(file.list,
+               sample.id=list("EK", "EU"),
+               assembly="hg18",
+               treatment=c(1,0),
+               context="CpG"
+)
+```
+
+- łączenie próbek:
+
+```{r, eval = F}
+meth=unite(myobj)
+```
+
+
+# Regiony o zróżnicowanej metylacji:
+
+## Okna o długości tysiąc:
+
+<small>
+1. Podział danych na regiony.
+Każda grupa $(chr, tiles)$ spełnia warunki: 
+$$chromosom = chr, start >= tiles * 1000, end <= (tiles + 1)*1000$$
+
+2. Dla każdej grupy wykonuję test Wilcoxona dla par obserwacji:\n
+
+
+- $d_i = met_{EK_i} - met_{EU_i}$ (iid, symetryczne względem mediany = $\theta$)
+- rangowanie $R_i$ zbioru: $|d_1|, \ldots |d_n|$
+- statystyka: $W^+$ suma $R_i$, dla których $d_i > 0$ (przybliżana r. normalnym)
+- $H_0: \theta = 0$
+- $H_1: \theta \neq 0$
+
+
+<\small>
+
+## Okna o długości tysiąc:
+
+Przykładowe wyniki: 
+
+- chr13: http://127.0.0.1:5439/?chrom=chr13&s=58207000&e=58208000
+- chr22: http://127.0.0.1:5439/?chrom=chr22&s=38610000&e=38611000
+- chr2: http://127.0.0.1:5439/?chrom=chr2&s=171573000&e=171574000
+- chr22: http://127.0.0.1:5439/?chrom=chr22&s=29876000&e=29877000
+- chr5: http://127.0.0.1:5439/?chrom=chr5&s=202900000&e=202901000
+
