@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="author" content="" />
-  <title>Analiza metylacji - to brzmi dziwnie</title>
+  <title>Analiza metylacji</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -119,10 +119,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <div class="reveal">
     <div class="slides">
 
-<section>
-    <h1 class="title">Analiza metylacji - to brzmi dziwnie</h1>
+<section data-background-image="imgs/bg-small.png">
+    <h1 class="title">Analiza metylacji</h1>
   <h1 class="subtitle"><small> <br>Aleksandra Brodecka   <a href="http://r-addict.com/About.html">Marcin Kosiński</a> </small></h1>
-    <h2 class="author"><small><a href='https://stackoverflow.com/users/3857701'><i class='fa fa-stack-overflow'></i></a>  <a href='https://github.com/MarcinKosinski'><i class='fa fa-github'></i></a>  <a href='mailto:m.p.kosinski@gmail.com'><i class='fa fa-envelope-o'></i></a>                                        <a href='https://r-addict.com'><i class='fa fa-comment'></i></a>  <a href='https://stackoverflow.com/users/3857701'><i class='fa fa-stack-overflow'></i></a>  <a href='https://github.com/MarcinKosinski'><i class='fa fa-github'></i></a>  <a href='mailto:m.p.kosinski@gmail.com'><i class='fa fa-envelope-o'></i></a></small><br></h2>
+    <h2 class="author"><small><a href='https://github.com/abrodecka'><i class='fa fa-github'></i></a>  <a href='mailto:aleksandrabrodecka@gmail.com'><i class='fa fa-envelope-o'></i></a>                                            <a href='https://r-addict.com'><i class='fa fa-comment'></i></a>  <a href='https://stackoverflow.com/users/3857701'><i class='fa fa-stack-overflow'></i></a>  <a href='https://github.com/MarcinKosinski'><i class='fa fa-github'></i></a>  <a href='mailto:m.p.kosinski@gmail.com'><i class='fa fa-envelope-o'></i></a></small><br></h2>
     <h3 class="date">12 Grudnia, 2016</h3>
 </section>
 
@@ -130,34 +130,36 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1>Plan prezentacji</h1>
 <p><small></p>
 <ul>
-<li>Cel analizy + z kim współpraca (+ewentualnie po co, o ile wiemy)</li>
-<li>Format danych (head danych RAW, head danych po tranfsormacji)</li>
-<li>pakiet methylKit - podstawowe ze 2/3 funkcje i obiekty</li>
-<li>wykresiki z methylKit - te podstawowe, zeby <code>zobrazowac dane</code></li>
-<li>analiza docelowa - na base</li>
-<li>analiza docelowa - na regionach długości tysiąc</li>
-<li>analiza docelowa - na regionach odpowiadających genom</li>
-<li>jakieś ultra pro-tipy developerskie, które zastosowaliśmy a na co dzień się ich nie stosuje</li>
-<li>gdzieś prezentacja aplikacji</li>
+<li>Cel analizy</li>
+<li>Format danych (raw i dostosowane do methylKit)</li>
+<li>methylKit - podstawy</li>
+<li>methylKit - wykresy</li>
+<li>analiza docelowa
+<ul>
+<li>na regionach długości tysiąc</li>
+<li>na regionach odpowiadających genom</li>
+</ul></li>
+<li>Czego się nauczyliśmy w trakcie - proTipy</li>
+<li>Prezentacja aplikacji</li>
 </ul>
 <p></small></p>
 </section></section>
-<section><section id="cel-analizy-i-postac-danych" class="titleslide slide level1"><h1>Cel analizy i postać danych</h1></section><section id="cel-analizy" class="slide level2">
+<section><section id="cel-analizy" class="titleslide slide level1"><h1>Cel analizy</h1></section><section id="cel-analizy-1" class="slide level2">
 <h1>Cel analizy</h1>
-<ul>
-<li>Celem analizy jest znalezienie regionów o zróżniocowanym stopniu metylacji (ang. Differentially methylated regions)</li>
-<li>Współpracujemy z prof. Płoskim (Zakład Genetyki Medycznej WUM)</li>
-</ul>
-</section><section id="cel-analizy-1" class="slide level2">
-<h1>Cel analizy</h1>
-<ul>
-<li>Przykład analizy: W badaniu opublikowanym w 2013 roku dokonano porównania stopnia metylacji u kobiet z osteoporozą i kobiet z chorobą zwyrodnieniową stawów. Odkryto około 250 regionów o zróżnicowanym stopniu metylacji. Były to głównie regiony kodujące czynniki transkrypcyjne, które biorą udział w różnicowaniu komórek i tworzenie szkieletu, co sugeruje, że stopień metylacji może istotny przy tworzeniu tych zaburzeń.</li>
-</ul>
-</section><section id="postac-danych" class="slide level2">
+<p>Znalezienie regionów o zróżniocowanym stopniu metylacji (<em>ang. Differentially methylated regions</em>).</p>
+<p>Współpraca z prof. Płoskim <br>(Zakład Genetyki Medycznej WUM).</p>
+</section><section id="przykad-analizy" class="slide level2">
+<h1>Przykład analizy</h1>
+<p><small></p>
+<p>W badaniu opublikowanym w 2013 roku dokonano porównania stopnia metylacji u kobiet z osteoporozą i kobiet z chorobą zwyrodnieniową stawów. Odkryto około 250 regionów o zróżnicowanym stopniu metylacji. Były to głównie regiony kodujące czynniki transkrypcyjne, które biorą udział w różnicowaniu komórek i tworzenie szkieletu, co sugeruje, że stopień metylacji może istotny przy tworzeniu tych zaburzeń.</p>
+<p></small></p>
+</section></section>
+<section><section id="postac-danych" class="titleslide slide level1"><h1>Postać danych</h1></section><section id="postac-danych-1" class="slide level2">
 <h1>Postać danych</h1>
+<p><small></p>
+<p>Dwie próbki pochodzące od jednej pacjentki <br> EK - komórka nie poddana chorobie - ponad 6mln rekordów, <br>EU - komórka poddana chorobie - 11 mln rekordów.</p>
 <ul>
-<li><p>dwie próbki pochodzące od jednej pacjentki (EK - komórka nie poddana chorobie - ponad 6mln rekordów, EU - komórka poddana chorobie - 11 mln rekordów)</p></li>
-<li><p>postać danych przed tranformacją:</p></li>
+<li>postać danych przed tranformacją:</li>
 </ul>
 <table>
 <thead>
@@ -205,10 +207,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </tr>
 </tbody>
 </table>
-</section><section id="postac-danych-po-transformacji" class="slide level2">
-<h1>Postać danych po transformacji:</h1>
 <ul>
-<li>jedna próbka - ponad 2 mln rekordów</li>
+<li>postać danych po transformacji:</li>
 </ul>
 <table>
 <thead>
@@ -252,31 +252,28 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </tr>
 </tbody>
 </table>
-</section></section>
-<section><section id="pakiet-methylkit" class="titleslide slide level1"><h1>Pakiet methylKit</h1></section><section id="przydatne-funkcje-i-opis-pakietu" class="slide level2">
-<h1>Przydatne funkcje i opis pakietu:</h1>
 <ul>
-<li>wczytywanie danych: (muszą być specjalniej postaci! )</li>
+<li>jedna próbka - ponad 2 mln rekordów</li>
 </ul>
+<p></small></p>
+</section></section>
+<section><section id="pakiet-methylkit" class="titleslide slide level1"><h1>Pakiet methylKit</h1></section><section id="podstawowe-funkcje" class="slide level2">
+<h1>Podstawowe funkcje</h1>
+<p>Wczytywanie danych: (muszą być specjalniej postaci! )</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">file.list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;Sample_40092EK.tab&quot;</span>,
                   <span class="st">&quot;Sample_40092EU.tab&quot;</span>)
-
-myobj=<span class="kw">methRead</span>(file.list,
-               <span class="dt">sample.id=</span><span class="kw">list</span>(<span class="st">&quot;EK&quot;</span>, <span class="st">&quot;EU&quot;</span>),
-               <span class="dt">assembly=</span><span class="st">&quot;hg18&quot;</span>,
-               <span class="dt">treatment=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">0</span>),
-               <span class="dt">context=</span><span class="st">&quot;CpG&quot;</span>
-)</code></pre></div>
-<ul>
-<li>łączenie próbek:</li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">meth=<span class="kw">unite</span>(myobj)</code></pre></div>
+myobj &lt;-<span class="st"> </span><span class="kw">methRead</span>(file.list, <span class="dt">sample.id =</span> <span class="kw">list</span>(<span class="st">&quot;EK&quot;</span>, <span class="st">&quot;EU&quot;</span>),
+                  <span class="dt">assembly =</span> <span class="st">&quot;hg18&quot;</span>, <span class="dt">treatment =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">0</span>), 
+                  <span class="dt">context =</span> <span class="st">&quot;CpG&quot;</span>)</code></pre></div>
+<p>Łączenie próbek:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">meth &lt;-<span class="st"> </span><span class="kw">unite</span>(myobj)</code></pre></div>
 </section></section>
-<section><section id="regiony-o-zroznicowanej-metylacji" class="titleslide slide level1"><h1>Regiony o zróżnicowanej metylacji:</h1></section><section id="okna-o-dugosci-tysiac" class="slide level2">
-<h1>Okna o długości tysiąc:</h1>
-<p><small> 1. Podział danych na regiony. Każda grupa <span class="math inline">\((chr, tiles)\)</span> spełnia warunki: <span class="math display">\[chromosom = chr, start &gt;= tiles * 1000, end &lt;= (tiles + 1)*1000\]</span></p>
-<ol start="2" type="1">
-<li>Dla każdej grupy wykonuję test Wilcoxona dla par obserwacji:</li>
+<section><section id="analiza-regiony-o-zroznicowanej-metylacji" class="titleslide slide level1"><h1>Analiza <br> Regiony o zróżnicowanej metylacji</h1></section><section id="okna-o-dugosci-tysiac" class="slide level2">
+<h1>Okna o długości tysiąc</h1>
+<p><small></p>
+<ol type="1">
+<li><p>Podział danych na regiony. Każda grupa <span class="math inline">\((chr, tiles)\)</span> spełnia warunki: <span class="math display">\[chromosom = chr, start &gt;= tiles * 1000, end &lt;= (tiles + 1)*1000\]</span></p></li>
+<li><p>Dla każdej grupy wykonuję test Wilcoxona dla par obserwacji:</p></li>
 </ol>
 <ul>
 <li><span class="math inline">\(d_i = met_{EK_i} - met_{EU_i}\)</span> (iid, symetryczne względem mediany = <span class="math inline">\(\theta\)</span>)</li>
@@ -286,8 +283,8 @@ myobj=<span class="kw">methRead</span>(file.list,
 <li><span class="math inline">\(H_1: \theta \neq 0\)</span></li>
 </ul>
 <p>&lt;&gt;</p>
-</section><section id="okna-o-dugosci-tysiac-1" class="slide level2">
-<h1>Okna o długości tysiąc:</h1>
+</section><section id="okna-o-dugosci-tysiac-linki" class="slide level2">
+<h1>Okna o długości tysiąc <br> Linki</h1>
 <p>Przykładowe wyniki:</p>
 <ul>
 <li>chr13: <a href="http://127.0.0.1:4444/?chrom=chr13&amp;s=58207000&amp;e=58208000" class="uri">http://127.0.0.1:4444/?chrom=chr13&amp;s=58207000&amp;e=58208000</a></li>
@@ -314,8 +311,6 @@ myobj=<span class="kw">methRead</span>(file.list,
         history: true,
         // Vertical centering of slides
         center: true,
-        // Opens links in an iframe preview overlay
-        previewLinks: true,
         // Transition style
         transition: 'default', // none/fade/slide/convex/concave/zoom
         // Transition style for full page slide backgrounds

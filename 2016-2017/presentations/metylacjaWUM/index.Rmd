@@ -1,7 +1,7 @@
 ---
-title: "Analiza metylacji - to brzmi dziwnie"
+title: "Analiza metylacji"
 subtitle: "<small> <br>Aleksandra Brodecka &nbsp;&nbsp;[Marcin Kosiński](http://r-addict.com/About.html) </small>"
-author: "<small><a href='https://stackoverflow.com/users/3857701'><i class='fa fa-stack-overflow'></i></a>&nbsp;&nbsp;<a href='https://github.com/MarcinKosinski'><i class='fa fa-github'></i></a>&nbsp;&nbsp;<a href='mailto:m.p.kosinski@gmail.com'><i class='fa fa-envelope-o'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='https://r-addict.com'><i class='fa fa-comment'></i></a>&nbsp;&nbsp;<a href='https://stackoverflow.com/users/3857701'><i class='fa fa-stack-overflow'></i></a>&nbsp;&nbsp;<a href='https://github.com/MarcinKosinski'><i class='fa fa-github'></i></a>&nbsp;&nbsp;<a href='mailto:m.p.kosinski@gmail.com'><i class='fa fa-envelope-o'></i></a></small><br>"
+author: "<small><a href='https://github.com/abrodecka'><i class='fa fa-github'></i></a>&nbsp;&nbsp;<a href='mailto:aleksandrabrodecka@gmail.com'><i class='fa fa-envelope-o'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='https://r-addict.com'><i class='fa fa-comment'></i></a>&nbsp;&nbsp;<a href='https://stackoverflow.com/users/3857701'><i class='fa fa-stack-overflow'></i></a>&nbsp;&nbsp;<a href='https://github.com/MarcinKosinski'><i class='fa fa-github'></i></a>&nbsp;&nbsp;<a href='mailto:m.p.kosinski@gmail.com'><i class='fa fa-envelope-o'></i></a></small><br>"
 date: 12 Grudnia, 2016
 output:
   revealjs::revealjs_presentation:
@@ -11,7 +11,6 @@ output:
     center: true
     reveal_options:
       slideNumber: true
-      previewLinks: true
 ---
 
 ```{r, include=FALSE}
@@ -37,36 +36,43 @@ opts_chunk$set(
 
 <small>
 
-- Cel analizy + z kim współpraca (+ewentualnie po co, o ile wiemy)
-- Format danych (head danych RAW, head danych po tranfsormacji)
-- pakiet methylKit - podstawowe ze 2/3 funkcje i obiekty
-- wykresiki z methylKit - te podstawowe, zeby `zobrazowac dane`
-- analiza docelowa - na base
-- analiza docelowa - na regionach długości tysiąc
-- analiza docelowa - na regionach odpowiadających genom
-- jakieś ultra pro-tipy developerskie, które zastosowaliśmy a na co dzień się ich nie stosuje
-- gdzieś prezentacja aplikacji
+- Cel analizy
+- Format danych (raw i dostosowane do methylKit)
+- methylKit - podstawy 
+- methylKit - wykresy
+- analiza docelowa 
+    - na regionach długości tysiąc
+    - na regionach odpowiadających genom
+- Czego się nauczyliśmy w trakcie - proTipy
+- Prezentacja aplikacji
 
 </small>
 
-# Cel analizy i postać danych
+# Cel analizy
 
 ## Cel analizy
 
-- Celem analizy jest znalezienie regionów o zróżniocowanym stopniu metylacji (ang. Differentially methylated regions)
-- Współpracujemy z prof. Płoskim (Zakład Genetyki Medycznej WUM)
+Znalezienie regionów o zróżniocowanym stopniu metylacji (*ang. Differentially methylated regions*). 
 
-## Cel analizy
-- Przykład analizy: 
+Współpraca z prof. Płoskim <br>(Zakład Genetyki Medycznej WUM).
+
+## Przykład analizy
+
+<small>
+
 W badaniu opublikowanym w 2013 roku dokonano porównania stopnia metylacji u kobiet z osteoporozą i kobiet z chorobą zwyrodnieniową stawów. Odkryto około 250 regionów o zróżnicowanym stopniu metylacji. Były to głównie regiony kodujące czynniki transkrypcyjne, które biorą udział w różnicowaniu komórek i tworzenie szkieletu, co sugeruje, że stopień metylacji może istotny przy tworzeniu tych zaburzeń. 
 
+</small>
+
+# Postać danych
 
 ## Postać danych
 
-- dwie próbki pochodzące od jednej pacjentki (EK - komórka nie poddana chorobie - ponad 6mln rekordów, EU - komórka poddana chorobie - 11 mln rekordów)
+<small>
+
+Dwie próbki pochodzące od jednej pacjentki <br> EK - komórka nie poddana chorobie - ponad 6mln rekordów, <br>EU - komórka poddana chorobie - 11 mln rekordów.
 
 - postać danych przed tranformacją:
-
 
 |CHROM|POS|REF|ALT|DP|AF|meth|unmeth|
 |------|:---:|-----:|-----:|-----:|-----:|-----:|-----:|
@@ -74,49 +80,46 @@ W badaniu opublikowanym w 2013 roku dokonano porównania stopnia metylacji u kob
 |chr1|2198933|C|G|23|0.3478|15|8|
 |chrY|9269317|C|G|1|1|0|1|
 
-## Postać danych po transformacji:
+- postać danych po transformacji:
 
 
- - jedna próbka - ponad 2 mln rekordów
- 
- 
 |chr|start|end|coverage.EK | met.EK |coverage.EU|met.EU|
 |------|:---:|-----:|-----:|-----:|-----:|-----:|
 |chr1|15513|15513|23|1.00|22|1.00|
 |chrY|59033091|59033091|99|0.67|166|0.77|
 |chr20|3139367|3139367|28|0.75|26|0.76|
 
+- jedna próbka - ponad 2 mln rekordów
+
+</small>
 
 # Pakiet methylKit
 
-## Przydatne funkcje i opis pakietu:
+## Podstawowe funkcje
 
-- wczytywanie danych: (muszą być specjalniej postaci! )
+Wczytywanie danych: (muszą być specjalniej postaci! )
 
 ```{r, eval = F}
 file.list <- list("Sample_40092EK.tab",
                   "Sample_40092EU.tab")
-
-myobj=methRead(file.list,
-               sample.id=list("EK", "EU"),
-               assembly="hg18",
-               treatment=c(1,0),
-               context="CpG"
-)
+myobj <- methRead(file.list, sample.id = list("EK", "EU"),
+                  assembly = "hg18", treatment = c(1, 0), 
+                  context = "CpG")
 ```
 
-- łączenie próbek:
+Łączenie próbek:
 
 ```{r, eval = F}
-meth=unite(myobj)
+meth <- unite(myobj)
 ```
 
 
-# Regiony o zróżnicowanej metylacji:
+# Analiza <br> Regiony o zróżnicowanej metylacji
 
-## Okna o długości tysiąc:
+## Okna o długości tysiąc
 
 <small>
+
 1. Podział danych na regiony.
 Każda grupa $(chr, tiles)$ spełnia warunki: 
 $$chromosom = chr, start >= tiles * 1000, end <= (tiles + 1)*1000$$
@@ -130,10 +133,9 @@ $$chromosom = chr, start >= tiles * 1000, end <= (tiles + 1)*1000$$
 - $H_0: \theta = 0$
 - $H_1: \theta \neq 0$
 
-
 <\small>
 
-## Okna o długości tysiąc:
+## Okna o długości tysiąc <br> Linki
 
 Przykładowe wyniki: 
 
