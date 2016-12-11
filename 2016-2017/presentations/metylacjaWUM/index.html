@@ -128,7 +128,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <section><section id="plan-prezentacji" class="titleslide slide level1"><h1>Plan prezentacji</h1></section><section id="plan-prezentacji-1" class="slide level2">
 <h1>Plan prezentacji</h1>
-<p><small></p>
+<small>
 <ul>
 <li>Cel analizy</li>
 <li>Format danych (raw i dostosowane do methylKit)</li>
@@ -139,10 +139,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>na regionach długości tysiąc</li>
 <li>na regionach odpowiadających genom</li>
 </ul></li>
-<li>Czego się nauczyliśmy w trakcie - proTipy</li>
 <li>Prezentacja aplikacji</li>
 </ul>
-<p></small></p>
+</small>
 </section></section>
 <section><section id="cel-analizy" class="titleslide slide level1"><h1>Cel analizy</h1></section><section id="cel-analizy-1" class="slide level2">
 <h1>Cel analizy</h1>
@@ -150,13 +149,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Współpraca z prof. Płoskim <br>(Zakład Genetyki Medycznej WUM).</p>
 </section><section id="przykad-analizy" class="slide level2">
 <h1>Przykład analizy</h1>
-<p><small></p>
+<small>
 <p>W badaniu opublikowanym w 2013 roku dokonano porównania stopnia metylacji u kobiet z osteoporozą i kobiet z chorobą zwyrodnieniową stawów. Odkryto około 250 regionów o zróżnicowanym stopniu metylacji. Były to głównie regiony kodujące czynniki transkrypcyjne, które biorą udział w różnicowaniu komórek i tworzenie szkieletu, co sugeruje, że stopień metylacji może istotny przy tworzeniu tych zaburzeń.</p>
-<p></small></p>
+</small>
 </section></section>
 <section><section id="postac-danych" class="titleslide slide level1"><h1>Postać danych</h1></section><section id="postac-danych-1" class="slide level2">
 <h1>Postać danych</h1>
-<p><small></p>
+<small>
 <p>Dwie próbki pochodzące od jednej pacjentki <br> EK - komórka nie poddana chorobie - ponad 6mln rekordów, <br>EU - komórka poddana chorobie - 11 mln rekordów.</p>
 <ul>
 <li>postać danych przed tranformacją:</li>
@@ -255,7 +254,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul>
 <li>jedna próbka - ponad 2 mln rekordów</li>
 </ul>
-<p></small></p>
+</small>
 </section></section>
 <section><section id="pakiet-methylkit" class="titleslide slide level1"><h1>Pakiet methylKit</h1></section><section id="podstawowe-funkcje" class="slide level2">
 <h1>Podstawowe funkcje</h1>
@@ -270,7 +269,7 @@ myobj &lt;-<span class="st"> </span><span class="kw">methRead</span>(file.list, 
 </section></section>
 <section><section id="analiza-regiony-o-zroznicowanej-metylacji" class="titleslide slide level1"><h1>Analiza <br> Regiony o zróżnicowanej metylacji</h1></section><section id="okna-o-dugosci-tysiac" class="slide level2">
 <h1>Okna o długości tysiąc</h1>
-<p><small></p>
+<small>
 <ol type="1">
 <li><p>Podział danych na regiony. Każda grupa <span class="math inline">\((chr, tiles)\)</span> spełnia warunki: <span class="math display">\[chromosom = chr, start &gt;= tiles * 1000, end &lt;= (tiles + 1)*1000\]</span></p></li>
 <li><p>Dla każdej grupy wykonuję test Wilcoxona dla par obserwacji:</p></li>
@@ -282,9 +281,10 @@ myobj &lt;-<span class="st"> </span><span class="kw">methRead</span>(file.list, 
 <li><span class="math inline">\(H_0: \theta = 0\)</span></li>
 <li><span class="math inline">\(H_1: \theta \neq 0\)</span></li>
 </ul>
-<p>&lt;&gt;</p>
+</small>
 </section><section id="okna-o-dugosci-tysiac-linki" class="slide level2">
 <h1>Okna o długości tysiąc <br> Linki</h1>
+<small>
 <p>Przykładowe wyniki:</p>
 <ul>
 <li>chr13: <a href="http://127.0.0.1:4444/?chrom=chr13&amp;s=58207000&amp;e=58208000" class="uri">http://127.0.0.1:4444/?chrom=chr13&amp;s=58207000&amp;e=58208000</a></li>
@@ -293,6 +293,310 @@ myobj &lt;-<span class="st"> </span><span class="kw">methRead</span>(file.list, 
 <li>chr22: <a href="http://127.0.0.1:4444/?chrom=chr22&amp;s=29876000&amp;e=29877000" class="uri">http://127.0.0.1:4444/?chrom=chr22&amp;s=29876000&amp;e=29877000</a></li>
 <li>chr5: <a href="http://127.0.0.1:4444/?chrom=chr5&amp;s=202900000&amp;e=202901000" class="uri">http://127.0.0.1:4444/?chrom=chr5&amp;s=202900000&amp;e=202901000</a></li>
 </ul>
+</small>
+</section></section>
+<section><section id="analiza-regiony-odpowiadajace-genom" class="titleslide slide level1"><h1>Analiza <br> Regiony odpowiadające genom</h1></section><section id="jak-znalezc-regiony-odpowiadajace-genom" class="slide level2">
+<h1>Jak znaleźć regiony odpowiadające genom?</h1>
+<p><small> <a href="https://www.researchgate.net/post/How_can_I_get_the_chromosomal_location_of_a_list_of_genes"><i class='fa fa-stack-overflow'></i> How can I get the chromosomal location of a list of genes?</a> -&gt; bioMart</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(biomaRt)
+ensembl &lt;-<span class="st"> </span><span class="kw">useMart</span>(<span class="st">&quot;ensembl&quot;</span>,
+                   <span class="dt">dataset =</span> <span class="st">&quot;hsapiens_gene_ensembl&quot;</span>)
+<span class="co"># head(listAttributes(ensembl),50)</span>
+attributes &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;chromosome_name&#39;</span>, <span class="st">&#39;start_position&#39;</span>, <span class="st">&#39;end_position&#39;</span>,
+                <span class="st">&#39;gene_biotype&#39;</span>, <span class="st">&#39;hgnc_id&#39;</span>, <span class="st">&#39;hgnc_symbol&#39;</span>)
+<span class="co"># head(listFilters(ensembl),20)</span>
+genes &lt;-<span class="st"> </span><span class="kw">getBM</span>(<span class="dt">attributes =</span> attributes, <span class="dt">mart =</span> ensembl, 
+               <span class="dt">filter =</span> <span class="kw">c</span>(<span class="st">&#39;chromosome_name&#39;</span>), <span class="dt">value =</span> <span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">22</span>,<span class="st">&quot;X&quot;</span>, <span class="st">&quot;Y&quot;</span>, <span class="st">&quot;M&quot;</span>))
+genes_hgnc &lt;-<span class="st"> </span>dplyr::<span class="kw">filter</span>(genes, hgnc_symbol !=<span class="st"> &quot;&quot;</span>)</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">chromosome_name</th>
+<th style="text-align: right;">start_position</th>
+<th style="text-align: right;">end_position</th>
+<th style="text-align: left;">gene_biotype</th>
+<th style="text-align: left;">hgnc_id</th>
+<th style="text-align: left;">hgnc_symbol</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">5</td>
+<td style="text-align: right;">85762559</td>
+<td style="text-align: right;">85763138</td>
+<td style="text-align: left;">processed_pseudogene</td>
+<td style="text-align: left;">HGNC:36410</td>
+<td style="text-align: left;">RPS2P25</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">222503883</td>
+<td style="text-align: right;">222504843</td>
+<td style="text-align: left;">processed_pseudogene</td>
+<td style="text-align: left;">HGNC:38555</td>
+<td style="text-align: left;">GAPDHP49</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">8</td>
+<td style="text-align: right;">81807772</td>
+<td style="text-align: right;">81808726</td>
+<td style="text-align: left;">processed_pseudogene</td>
+<td style="text-align: left;">HGNC:48765</td>
+<td style="text-align: left;">HNRNPA1P36</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">9</td>
+<td style="text-align: right;">96928310</td>
+<td style="text-align: right;">96940253</td>
+<td style="text-align: left;">protein_coding</td>
+<td style="text-align: left;">HGNC:23449</td>
+<td style="text-align: left;">NUTM2G</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">13</td>
+<td style="text-align: right;">22696023</td>
+<td style="text-align: right;">22696574</td>
+<td style="text-align: left;">processed_pseudogene</td>
+<td style="text-align: left;">HGNC:3994</td>
+<td style="text-align: left;">FTH1P7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">8</td>
+<td style="text-align: right;">122769274</td>
+<td style="text-align: right;">122770150</td>
+<td style="text-align: left;">processed_pseudogene</td>
+<td style="text-align: left;">HGNC:21261</td>
+<td style="text-align: left;">CDK5P1</td>
+</tr>
+</tbody>
+</table>
+</small>
+</section><section id="jak-znalezc-pokrycia-odczytow-w-genach" class="slide level2">
+<h1>Jak znaleźć pokrycia odczytów w genach?</h1>
+<small>
+<p><a href="http://stackoverflow.com/questions/3916195/finding-overlap-in-ranges-with-r"><i class='fa fa-stack-overflow'></i> how to find interval overlaps in r -&gt; Finding overlap in ranges with R</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">overlaps_find_1 &lt;-<span class="st"> </span><span class="kw">findOverlaps</span>(
+  <span class="kw">as</span>(analysis1[[<span class="dv">1</span>]], <span class="st">&quot;GRanges&quot;</span>), <span class="co"># myobj[[1]]</span>
+  <span class="kw">as</span>(genes_hgnc, <span class="st">&quot;GRanges&quot;</span>),
+  <span class="dt">type =</span> <span class="st">&quot;within&quot;</span>)
+<span class="kw">cbind</span>(
+  genes_hgnc[<span class="kw">subjectHits</span>(overlaps_find_1), ],
+  <span class="kw">as.data.frame</span>(
+    <span class="kw">as</span>(analysis1[[<span class="dv">1</span>]], <span class="st">&quot;GRanges&quot;</span>)
+                )[<span class="kw">queryHits</span>(overlaps_find_1), <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">6</span>:<span class="dv">8</span>)] %&gt;%
+<span class="st">    </span>dplyr::<span class="kw">rename</span>(<span class="dt">base =</span> start) %&gt;%
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">group =</span> <span class="st">&quot;EK&quot;</span>)
+  ) -&gt;<span class="st"> </span>EK</code></pre></div>
+<p><a href="https://www.bioconductor.org/packages/devel/bioc/vignettes/GenomicRanges/inst/doc/GenomicRangesIntroduction.pdf">An Introduction to the GenomicRanges Package</a></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">seqnames</th>
+<th style="text-align: right;">start</th>
+<th style="text-align: right;">end</th>
+<th style="text-align: left;">gene_biotype</th>
+<th style="text-align: left;">hgnc_id</th>
+<th style="text-align: left;">hgnc_symbol</th>
+<th style="text-align: right;">base</th>
+<th style="text-align: right;">coverage</th>
+<th style="text-align: right;">numCs</th>
+<th style="text-align: right;">numTs</th>
+<th style="text-align: left;">group</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">chr1</td>
+<td style="text-align: right;">825138</td>
+<td style="text-align: right;">859446</td>
+<td style="text-align: left;">processed_transcript</td>
+<td style="text-align: left;">HGNC:49377</td>
+<td style="text-align: left;">LINC01128</td>
+<td style="text-align: right;">825448</td>
+<td style="text-align: right;">36</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: left;">EK</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">chr1</td>
+<td style="text-align: right;">825138</td>
+<td style="text-align: right;">859446</td>
+<td style="text-align: left;">processed_transcript</td>
+<td style="text-align: left;">HGNC:49377</td>
+<td style="text-align: left;">LINC01128</td>
+<td style="text-align: right;">825449</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: left;">EK</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">chr1</td>
+<td style="text-align: right;">825138</td>
+<td style="text-align: right;">859446</td>
+<td style="text-align: left;">processed_transcript</td>
+<td style="text-align: left;">HGNC:49377</td>
+<td style="text-align: left;">LINC01128</td>
+<td style="text-align: right;">825626</td>
+<td style="text-align: right;">35</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">EK</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">chr1</td>
+<td style="text-align: right;">825138</td>
+<td style="text-align: right;">859446</td>
+<td style="text-align: left;">processed_transcript</td>
+<td style="text-align: left;">HGNC:49377</td>
+<td style="text-align: left;">LINC01128</td>
+<td style="text-align: right;">825627</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">EK</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">chr1</td>
+<td style="text-align: right;">825138</td>
+<td style="text-align: right;">859446</td>
+<td style="text-align: left;">processed_transcript</td>
+<td style="text-align: left;">HGNC:49377</td>
+<td style="text-align: left;">LINC01128</td>
+<td style="text-align: right;">825684</td>
+<td style="text-align: right;">36</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">EK</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">chr1</td>
+<td style="text-align: right;">825138</td>
+<td style="text-align: right;">859446</td>
+<td style="text-align: left;">processed_transcript</td>
+<td style="text-align: left;">HGNC:49377</td>
+<td style="text-align: left;">LINC01128</td>
+<td style="text-align: right;">825685</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">EK</td>
+</tr>
+</tbody>
+</table>
+</small>
+</section><section id="jak-znalezc-zroznicowane-geny" class="slide level2">
+<h1>Jak znaleźć zróżnicowane geny?</h1>
+<small>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">EK_EU %&gt;%<span class="st"> </span><span class="co"># dplyr::bind_rows(EK, EU)</span>
+<span class="st">  </span><span class="kw">filter</span>(hgnc_symbol %in%<span class="st"> </span>genes_names) %&gt;%<span class="st"> </span><span class="co"># &gt; 100 odczytow w EK i EU</span>
+<span class="st">  </span><span class="kw">group_by</span>(hgnc_symbol) %&gt;%
+<span class="st">    </span><span class="kw">do</span>(<span class="dt">mod =</span> <span class="kw">glm</span>(<span class="kw">cbind</span>(numCs, numTs) ~<span class="st"> </span>group+<span class="kw">as.factor</span>(base), <span class="dt">data =</span>.,
+          <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>)) -&gt;<span class="st"> </span>models
+models %&gt;%<span class="st"> </span><span class="kw">do</span>(<span class="kw">data.frame</span>(
+                <span class="dt">var =</span> <span class="kw">names</span>(<span class="kw">coef</span>(.$mod)),
+                <span class="kw">coef</span>(<span class="kw">summary</span>(.$mod)))) %&gt;%
+<span class="st">  </span><span class="kw">filter</span>(var ==<span class="st"> &quot;groupEU&quot;</span>) -&gt;<span class="st"> </span>res_do
+<span class="co"># + troche brudnego przerabiania</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Estimate</th>
+<th style="text-align: right;">pval</th>
+<th style="text-align: left;">hgnc_symbol</th>
+<th style="text-align: left;">chromosome_name</th>
+<th style="text-align: right;">start_position</th>
+<th style="text-align: right;">end_position</th>
+<th style="text-align: left;">gene_biotype</th>
+<th style="text-align: left;">hgnc_id</th>
+<th style="text-align: right;">pval.adj</th>
+<th style="text-align: right;">EK_reads_in_gene</th>
+<th style="text-align: right;">EU_reads_in_gene</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0.8717109</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">CYSTM1</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: right;">140174642</td>
+<td style="text-align: right;">140282052</td>
+<td style="text-align: left;">protein_coding</td>
+<td style="text-align: left;">HGNC:30239</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">752</td>
+<td style="text-align: right;">952</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1.7999432</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">PIK3R5</td>
+<td style="text-align: left;">17</td>
+<td style="text-align: right;">8878911</td>
+<td style="text-align: right;">8965712</td>
+<td style="text-align: left;">protein_coding</td>
+<td style="text-align: left;">HGNC:30035</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">253</td>
+<td style="text-align: right;">281</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1.2661603</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">LINC01121</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">45164870</td>
+<td style="text-align: right;">45323295</td>
+<td style="text-align: left;">processed_transcript</td>
+<td style="text-align: left;">HGNC:49266</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">513</td>
+<td style="text-align: right;">637</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2.0360239</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">ZNF385C</td>
+<td style="text-align: left;">17</td>
+<td style="text-align: right;">42025576</td>
+<td style="text-align: right;">42098479</td>
+<td style="text-align: left;">protein_coding</td>
+<td style="text-align: left;">HGNC:33722</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">260</td>
+<td style="text-align: right;">293</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">-0.4512390</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">PRDM16</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">3069168</td>
+<td style="text-align: right;">3438621</td>
+<td style="text-align: left;">protein_coding</td>
+<td style="text-align: left;">HGNC:14000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2766</td>
+<td style="text-align: right;">3162</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2.1870519</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">CYP2F1</td>
+<td style="text-align: left;">19</td>
+<td style="text-align: right;">41114432</td>
+<td style="text-align: right;">41128366</td>
+<td style="text-align: left;">protein_coding</td>
+<td style="text-align: left;">HGNC:2632</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">118</td>
+<td style="text-align: right;">143</td>
+</tr>
+</tbody>
+</table>
+</small>
 </section></section>
     </div>
   </div>

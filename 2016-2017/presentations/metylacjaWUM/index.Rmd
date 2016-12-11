@@ -43,7 +43,6 @@ opts_chunk$set(
 - analiza docelowa 
     - na regionach długości tysiąc
     - na regionach odpowiadających genom
-- Czego się nauczyliśmy w trakcie - proTipy
 - Prezentacja aplikacji
 
 </small>
@@ -146,6 +145,89 @@ Przykładowe wyniki:
 - chr2: http://127.0.0.1:4444/?chrom=chr2&s=171573000&e=171574000
 - chr22: http://127.0.0.1:4444/?chrom=chr22&s=29876000&e=29877000
 - chr5: http://127.0.0.1:4444/?chrom=chr5&s=202900000&e=202901000
+
+</small>
+
+# Analiza <br> Regiony odpowiadające genom
+
+## Jak znaleźć regiony odpowiadające genom?
+
+
+<small>
+[<i class='fa fa-stack-overflow'></i> How can I get the chromosomal location of a list of genes?](https://www.researchgate.net/post/How_can_I_get_the_chromosomal_location_of_a_list_of_genes) -> bioMart
+
+```{r, eval=FALSE}
+library(biomaRt)
+ensembl <- useMart("ensembl",
+                   dataset = "hsapiens_gene_ensembl")
+# head(listAttributes(ensembl),50)
+attributes <- c('chromosome_name', 'start_position', 'end_position',
+                'gene_biotype', 'hgnc_id', 'hgnc_symbol')
+# head(listFilters(ensembl),20)
+genes <- getBM(attributes = attributes, mart = ensembl, 
+               filter = c('chromosome_name'), value = c(1:22,"X", "Y", "M"))
+genes_hgnc <- dplyr::filter(genes, hgnc_symbol != "")
+```
+
+```{r, echo=FALSE}
+load('genes_hgnc.rda')
+knitr::kable(head(genes_hgnc))
+```
+
+</small>
+
+## Jak znaleźć pokrycia odczytów w genach?
+
+<small>
+
+[<i class='fa fa-stack-overflow'></i> how to find interval overlaps in r -> Finding overlap in ranges with R](http://stackoverflow.com/questions/3916195/finding-overlap-in-ranges-with-r)
+
+```{r, eval=FALSE}
+overlaps_find_1 <- findOverlaps(
+  as(analysis1[[1]], "GRanges"), # myobj[[1]]
+  as(genes_hgnc, "GRanges"),
+  type = "within")
+cbind(
+  genes_hgnc[subjectHits(overlaps_find_1), ],
+  as.data.frame(
+    as(analysis1[[1]], "GRanges")
+                )[queryHits(overlaps_find_1), c(2,6:8)] %>%
+    dplyr::rename(base = start) %>%
+    mutate(group = "EK")
+  ) -> EK
+```
+
+[An Introduction to the GenomicRanges Package](https://www.bioconductor.org/packages/devel/bioc/vignettes/GenomicRanges/inst/doc/GenomicRangesIntroduction.pdf)
+
+```{r, echo=FALSE}
+load('EK_EU.rda')
+knitr::kable(head(EK_EU))
+```
+
+</small>
+
+## Jak znaleźć zróżnicowane geny?
+
+<small>
+
+```{r, eval = FALSE}
+EK_EU %>% # dplyr::bind_rows(EK, EU)
+  filter(hgnc_symbol %in% genes_names) %>% # > 100 odczytow w EK i EU
+  group_by(hgnc_symbol) %>%
+    do(mod = glm(cbind(numCs, numTs) ~ group+as.factor(base), data =.,
+          family = "binomial")) -> models
+models %>% do(data.frame(
+                var = names(coef(.$mod)),
+                coef(summary(.$mod)))) %>%
+  filter(var == "groupEU") -> res_do
+# + troche brudnego przerabiania
+```
+
+```{r, echo=FALSE}
+load('res_head.rda')
+knitr::kable(res_head)
+```
+
 
 </small>
 
