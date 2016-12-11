@@ -133,9 +133,11 @@ $$chromosom = chr, start >= tiles * 1000, end <= (tiles + 1)*1000$$
 - $H_0: \theta = 0$
 - $H_1: \theta \neq 0$
 
-<\small>
+</small>
 
 ## Okna o długości tysiąc <br> Linki
+
+<small>
 
 Przykładowe wyniki: 
 
@@ -144,4 +146,6 @@ Przykładowe wyniki:
 - chr2: http://127.0.0.1:4444/?chrom=chr2&s=171573000&e=171574000
 - chr22: http://127.0.0.1:4444/?chrom=chr22&s=29876000&e=29877000
 - chr5: http://127.0.0.1:4444/?chrom=chr5&s=202900000&e=202901000
+
+</small>
 
