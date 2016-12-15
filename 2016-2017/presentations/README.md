@@ -2,8 +2,16 @@
 
 #### Prezentacje
 
+9 I 2017 -
+Temat
+Agnieszka Paluszyńska, MIM UW
+
+12 XII 2016 -
+[Wyniki analizy metylacji](http://geneticsmining.github.io/2016-2017/presentations/metylacjaWUM/#/)
+Aleksandra Brodecka, MiNI PW + <a href="http://r-addict.com/About.html">Marcin Kosiński</a>, MiNI PW
+
 5 XII 2016 -
-Techniki NGS i problemy z organizmami niemodelowymi
+[Techniki NGS i problemy z organizmami niemodelowymi](https://github.com/geneticsMiNIng/geneticsMiNIng.github.io/raw/master/2016-2017/presentations/Kloch/sem_mini.pdf)
 <a href="http://perlism.org/akloch/">dr Agnieszka Kloch</a>, WB UW
 
 
