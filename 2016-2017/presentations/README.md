@@ -9,7 +9,7 @@ Magdalena Mazurek, MiNI PW
 
 9 I 2017 -
 [Graficzna analiza struktury lasów losowych za pomocą pakietu ggRandomForests
-](http://geneticsmining.github.io/2016-2017/presentations/ggRandomForest/)
+](http://geneticsmining.github.io/2016-2017/presentations/ggRandomForests/)
 Agnieszka Paluszyńska, MIM UW
 
 12 XII 2016 -
