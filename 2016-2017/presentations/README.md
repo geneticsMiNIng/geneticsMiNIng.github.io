@@ -2,8 +2,14 @@
 
 #### Prezentacje
 
-9 I 2017 -
+
+16 I 2017 -
 Temat
+Magdalena Mazurek, MiNI PW
+
+9 I 2017 -
+[Graficzna analiza struktury lasów losowych za pomocą pakietu ggRandomForests
+](http://geneticsmining.github.io/2016-2017/presentations/ggRandomForest/)
 Agnieszka Paluszyńska, MIM UW
 
 12 XII 2016 -
@@ -20,7 +26,7 @@ Aleksandra Brodecka, MiNI PW + <a href="http://r-addict.com/About.html">Marcin K
 Agnieszka Sitko, MIM UW
 
 14 XI 2016 - 
-Metody pomiaru specjalizacji i gęstości przemysłu. Indeks SPAG
+<a href="http://geneticsmining.github.io/2016-2017/presentations/SPAG/">Metody pomiaru specjalizacji i gęstości przemysłu. Indeks SPAG</a>
 Maksymilian Mazur, MiNI PW
 
 7 XI 2016 -
