@@ -1,10 +1,13 @@
-### W semestrze 2016/2017 seminarium prowadzone jest w godzinach 15:30-16:30 w poniedziałki w pokoju 222 (Koszykowa 75, gmach MiNI PW).
+### W semestrze ziomowym 2016/2017 seminarium prowadzone jest w godzinach 15:30-16:30 w poniedziałki w pokoju 222 (Koszykowa 75, gmach MiNI PW) - semestr zakończony
 
-#### Prezentacje
+#### Prezentacje 
 
+23 I 2017 -
+Temat
+Katarzyna Zdon, MiNI PW
 
 16 I 2017 -
-Temat
+[Reszty w modelu Coxa](https://rawgit.com/geneticsMiNIng/geneticsMiNIng.github.io/master/2016-2017/presentations/cox/index.html)
 Magdalena Mazurek, MiNI PW
 
 9 I 2017 -
